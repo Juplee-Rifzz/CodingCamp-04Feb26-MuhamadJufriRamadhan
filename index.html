@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>TO-DO LIST</h2>
+
+    <!-- SUMMARY -->
+    <div class="summary">
+      <div class="card">
+        <p>Total Tasks</p>
+        <h3 id="total">0</h3>
+      </div>
+      <div class="card">
+        <p>Completed</p>
+        <h3 id="completed">0</h3>
+      </div>
+      <div class="card">
+        <p>Pending</p>
+        <h3 id="pending">0</h3>
+      </div>
+      <div class="card">
+        <p>Progress</p>
+        <h3 id="progress">0%</h3>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="input-area">
+      <input type="text" id="taskInput" placeholder="Add a todo...">
+      <input type="date" id="dateInput">
+      <button id="addBtn">+</button>
+    </div>
+
+    <!-- ACTION -->
+    <div class="actions">
+      <button id="deleteAll">Delete All</button>
+    </div>
+
+    <!-- TABLE -->
+    <table>
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Due Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="taskList">
+        <tr>
+          <td colspan="4" class="empty">No tasks found</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
