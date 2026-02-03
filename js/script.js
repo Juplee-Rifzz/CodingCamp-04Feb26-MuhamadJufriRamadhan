@@ -9,8 +9,11 @@ const completedEl = document.getElementById("completed");
 const pendingEl = document.getElementById("pending");
 const progressEl = document.getElementById("progress");
 
+const themeSelect = document.getElementById("themeSelect");
+
 let tasks = [];
 
+/* ================= TASK ================= */
 function updateSummary() {
   const total = tasks.length;
   const completed = tasks.filter(t => t.done).length;
@@ -34,7 +37,6 @@ function renderTasks() {
 
   tasks.forEach((task, index) => {
     const tr = document.createElement("tr");
-
     tr.innerHTML = `
       <td>${task.text}</td>
       <td>${task.date || "-"}</td>
@@ -46,7 +48,6 @@ function renderTasks() {
         <button onclick="deleteTask(${index})">🗑</button>
       </td>
     `;
-
     taskList.appendChild(tr);
   });
 
@@ -57,12 +58,11 @@ function addTask() {
   const text = taskInput.value.trim();
   const date = dateInput.value;
 
-  if (text === "") return;
+  if (!text) return;
 
   tasks.push({ text, date, done: false });
   taskInput.value = "";
   dateInput.value = "";
-
   renderTasks();
 }
 
@@ -76,9 +76,26 @@ function deleteTask(index) {
   renderTasks();
 }
 
+addBtn.addEventListener("click", addTask);
 deleteAllBtn.addEventListener("click", () => {
   tasks = [];
   renderTasks();
 });
 
-addBtn.addEventListener("click", addTask);
+/* ================= THEME ================= */
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+  document.body.classList.add(savedTheme);
+  themeSelect.value = savedTheme.replace("theme-", "");
+}
+
+themeSelect.addEventListener("change", () => {
+  document.body.className = "";
+  if (themeSelect.value) {
+    const themeClass = "theme-" + themeSelect.value;
+    document.body.classList.add(themeClass);
+    localStorage.setItem("theme", themeClass);
+  } else {
+    localStorage.removeItem("theme");
+  }
+});

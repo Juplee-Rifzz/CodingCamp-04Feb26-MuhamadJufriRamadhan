@@ -5,18 +5,73 @@
   font-family: Arial, sans-serif;
 }
 
+/* DEFAULT THEME */
+:root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #111;
+  --muted: #666;
+  --primary: #ff00cc;
+  --danger: #ff5f5f;
+  --border: #ddd;
+}
+
+/* NIGHT THEME */
+body.theme-night {
+  --bg: #0b1220;
+  --card: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --primary: #38bdf8;
+  --danger: #fb7185;
+  --border: #1f2937;
+}
+
+/* DRACULA THEME */
+body.theme-dracula {
+  --bg: #282a36;
+  --card: #1e1f29;
+  --text: #f8f8f2;
+  --muted: #a1a1aa;
+  --primary: #bd93f9;
+  --danger: #ff5555;
+  --border: #44475a;
+}
+
+/* CUPCAKE THEME */
+body.theme-cupcake {
+  --bg: #fff7f9;
+  --card: #ffffff;
+  --text: #4b5563;
+  --muted: #9ca3af;
+  --primary: #ec4899;
+  --danger: #fb7185;
+  --border: #fbcfe8;
+}
+
 body {
-  background: #f6f7fb;
+  background: var(--bg);
+  color: var(--text);
   padding: 40px;
 }
 
+/* THEME DROPDOWN */
+.theme-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* CONTAINER */
 .container {
-  background: #fff;
   max-width: 1000px;
   margin: auto;
+  background: var(--card);
   padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  border-radius: 14px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
 h2 {
@@ -33,9 +88,9 @@ h2 {
 }
 
 .card {
-  background: #f9fafc;
+  background: var(--bg);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
 }
 
@@ -52,14 +107,16 @@ h2 {
 }
 
 .input-area input {
+  flex: 1;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #ddd;
-  flex: 1;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
 }
 
 #addBtn {
-  background: #ff00cc;
+  background: var(--primary);
   border: none;
   color: #fff;
   font-size: 22px;
@@ -76,10 +133,10 @@ h2 {
 }
 
 #deleteAll {
-  background: #ff5f5f;
-  color: #fff;
+  background: var(--danger);
   border: none;
-  padding: 8px 14px;
+  color: #fff;
+  padding: 8px 16px;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -91,7 +148,7 @@ table {
 }
 
 thead {
-  background: #f2f3f7;
+  background: var(--bg);
 }
 
 th, td {
@@ -100,20 +157,26 @@ th, td {
 }
 
 tbody tr {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
 }
 
 .status.done {
-  color: green;
+  color: #22c55e;
   font-weight: bold;
 }
 
 .status.pending {
-  color: orange;
+  color: #facc15;
   font-weight: bold;
 }
 
 .empty {
+  color: var(--muted);
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 20px;
   text-align: center;
-  color: #999;
+  color: var(--muted);
 }
