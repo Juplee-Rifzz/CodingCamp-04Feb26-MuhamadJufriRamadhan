@@ -7,20 +7,20 @@
 
 /* DEFAULT THEME */
 :root {
-  --bg: #f6f7fb;
+  --bg: #e9eaf0;
   --card: #ffffff;
   --text: #111;
   --muted: #666;
   --primary: #ff00cc;
   --danger: #ff5f5f;
-  --border: #ddd;
+  --border: #cfcece;
 }
 
 /* NIGHT THEME */
 body.theme-night {
-  --bg: #0b1220;
+  --bg: #0b1322;
   --card: #111827;
-  --text: #e5e7eb;
+  --text: #2356bb;
   --muted: #9ca3af;
   --primary: #38bdf8;
   --danger: #fb7185;
@@ -31,7 +31,7 @@ body.theme-night {
 body.theme-dracula {
   --bg: #282a36;
   --card: #1e1f29;
-  --text: #f8f8f2;
+  --text: #fafafa;
   --muted: #a1a1aa;
   --primary: #bd93f9;
   --danger: #ff5555;
@@ -57,11 +57,31 @@ body {
 
 /* THEME DROPDOWN */
 .theme-switcher {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 8px;
-  border-radius: 8px;
+  background-color: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  display: block;
+  margin-left: auto;
+  margin-bottom: 10px;
+  
+  background-color: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.theme-switcher:focus, .theme-switcher:hover {
+  border-color: var(--primary);
+}
+
+.theme-switcher option {
+  background-color: var(--card);
+  color: var(--text);
 }
 
 /* CONTAINER */
@@ -79,6 +99,12 @@ h2 {
   margin-bottom: 25px;
 }
 
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
 /* SUMMARY */
 .summary {
   display: grid;
@@ -179,4 +205,87 @@ tbody tr {
   margin-top: 20px;
   text-align: center;
   color: var(--muted);
+}
+
+
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* Jarak  */
+}
+
+
+.btn-action {
+  background: none; 
+  border: none;     
+  font-size: 1.6rem; 
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%; 
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Mengatur Warna Sesuai Tema --- */
+.btn-toggle {
+  
+  color: var(--muted); 
+}
+
+
+.btn-toggle:hover,
+.btn-toggle i.bx-check-circle {
+  color: var(--primary); 
+  transform: scale(1.1); 
+}
+
+
+.btn-delete {
+  
+  color: var(--danger);
+}
+
+.btn-delete:hover {
+  
+  background-color: rgba(255, 95, 95, 0.1); 
+  transform: scale(1.1);
+}
+
+/* 1. Container utama */
+.action-bar {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  gap: 2px;                      
+  margin-top: 15px;
+}
+
+
+.btn-delete-all,
+.theme-switcher {
+  height: 30px;                
+  padding: 10 15px !important;  
+  font-size: 14px;             
+  border-radius: 10px;         
+  box-sizing: border-box;      
+  display: flex;               
+  align-items: center;         
+  justify-content: center;
+}
+
+
+.btn-delete-all {
+  background-color: var(--danger);
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-delete-all:hover {
+  opacity: 0.8;
 }

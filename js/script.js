@@ -1,3 +1,4 @@
+const filterSelect = document.getElementById("filterSelect");
 const taskInput = document.getElementById("taskInput");
 const dateInput = document.getElementById("dateInput");
 const addBtn = document.getElementById("addBtn");
@@ -28,6 +29,8 @@ function updateSummary() {
 
 function renderTasks() {
   taskList.innerHTML = "";
+  
+  const filterValue = filterSelect.value;
 
   if (tasks.length === 0) {
     taskList.innerHTML = `<tr><td colspan="4" class="empty">No tasks found</td></tr>`;
@@ -36,21 +39,31 @@ function renderTasks() {
   }
 
   tasks.forEach((task, index) => {
+    // 2. LOGIKA PENYARINGAN
+    if (filterValue === "completed" && !task.done) return;
+    if (filterValue === "pending" && task.done) return; 
     const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${task.text}</td>
-      <td>${task.date || "-"}</td>
-      <td class="status ${task.done ? "done" : "pending"}">
-        ${task.done ? "Completed" : "Pending"}
-      </td>
-      <td>
-        <button onclick="toggleTask(${index})">✔</button>
-        <button onclick="deleteTask(${index})">🗑</button>
-      </td>
-    `;
-    taskList.appendChild(tr);
-  });
+  tr.innerHTML = `
+    <td>${task.text}</td>
+    <td>${task.date || "-"}</td>
+    <td class="status ${task.done ? "done" : "pending"}">
+      ${task.done ? "Completed" : "Pending"}
+    </td>
+    <td>
+    <div class="action-buttons">
+    <button class="btn-action btn-toggle" onclick="toggleTask(${index})">
+      <i class='bx ${task.done ? "bx-check-circle" : "bx-circle"}'></i>
+    </button>
 
+    <button class="btn-action btn-delete" onclick="deleteTask(${index})">
+      <i class='bx bx-trash'></i>
+    </button>
+    </div>
+    </td>
+  `;
+  taskList.appendChild(tr);
+});
+  
   updateSummary();
 }
 
@@ -91,6 +104,7 @@ if (savedTheme) {
 
 themeSelect.addEventListener("change", () => {
   document.body.className = "";
+  renderTasks();
   if (themeSelect.value) {
     const themeClass = "theme-" + themeSelect.value;
     document.body.classList.add(themeClass);
@@ -99,3 +113,7 @@ themeSelect.addEventListener("change", () => {
     localStorage.removeItem("theme");
   }
 });
+filterSelect.addEventListener("change", () => {
+  renderTasks();
+});
+
