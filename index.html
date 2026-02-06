@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>To-Do List</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <!-- THEME SWITCHER -->
   <select id="themeSelect" class="theme-switcher">
-    <option value="">Default</option>
+    <option value="">Theme</option>
     <option value="night">Night</option>
     <option value="dracula">Dracula</option>
     <option value="cupcake">Cupcake</option>
   </select>
 
   <div class="container">
-    <h2>TO-DO LIST</h2>
+    <h2>MY TO-DO LIST</h2>
 
     <!-- SUMMARY -->
     <div class="summary">
@@ -45,10 +46,15 @@
       <button id="addBtn">+</button>
     </div>
 
-    <!-- ACTION -->
-    <div class="actions">
-      <button id="deleteAll">Delete All</button>
-    </div>
+<div class="action-bar">
+  <button id="deleteAll" class="btn-delete-all">Delete All</button>
+
+  <select id="filterSelect" class="theme-switcher">
+    <option value="all">All Task</option>
+    <option value="completed">Completed</option>
+    <option value="pending">Pending</option>
+  </select>
+</div>
 
     <!-- TABLE -->
     <table>
@@ -67,7 +73,7 @@
       </tbody>
     </table>
 
-    <p class="footer">Made with ❤️</p>
+    <p class="footer">MJR.2026</p>
   </div>
 
   <script src="js/script.js"></script>
